@@ -24,6 +24,16 @@
 
 {% block extra_js %}
 <script>
-    // JavaScript code for quiz functionality will go here
+    <script>
+        // Access user's camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function(stream) {
+                var video = document.getElementById('camera-feed');
+                video.srcObject = stream;
+            })
+            .catch(function(err) {
+                console.log("An error occurred: " + err);
+            });
+    </script>
 </script>
 {% endblock %}
