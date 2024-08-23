@@ -7,4 +7,7 @@ urlpatterns = [
     path('save-draft/', views.save_draft, name='save_draft'),
     path('submit-quiz/', views.submit_quiz, name='submit_quiz'),
     path('results/<int:session_id>/', views.quiz_results, name='quiz_results'),
+    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
 ]

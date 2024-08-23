@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-from django.db import models
-
 class Question(models.Model):
     text = models.TextField()
     time_limit = models.IntegerField()  # in seconds
@@ -25,3 +23,8 @@ class UserResponse(models.Model):
     is_draft = models.BooleanField(default=True)
     submission_time = models.DateTimeField(auto_now=True)
     session = models.ForeignKey(UserSession, on_delete=models.CASCADE)
+
+class UserRegistration(models.Model):
+
+    username = models.CharField(max_length=150)
+    password = models.CharField(max_length=128)
