@@ -1,9 +1,10 @@
 import json
 
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from django.http import JsonResponse
-from django.shortcuts import redirect, render
-
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
 from .models import Question, UserResponse, UserSession
 
 
@@ -11,7 +12,7 @@ from .models import Question, UserResponse, UserSession
 def quiz_interface(request):
     questions = Question.objects.all()
     session = UserSession.objects.create(user=request.user)
-    return render(request, 'quiz/interface.html', {'questions': questions, 'session_id': session.id})
+    return render(request, 'app1/interface.html', {'questions': questions, 'session_id': session.id})
 
 @login_required
 def save_draft(request):
@@ -33,19 +34,27 @@ def save_draft(request):
 
         return JsonResponse({'status': 'success'})
 
+
 @login_required
 def submit_quiz(request):
     if request.method == 'POST':
         session_id = request.POST.get('session_id')
-        session = UserSession.objects.get(id=session_id)
+        session = get_object_or_404(UserSession, id=session_id)
+
+        # Ensure the user can only submit their own quiz
+        if session.user != request.user:
+            raise PermissionDenied
+
         session.end_time = timezone.now()
         session.save()
 
         UserResponse.objects.filter(session=session).update(is_draft=False)
 
         return redirect('quiz_results', session_id=session_id)
+    else:
+        return JsonResponse({'status': 'error', 'message': 'Invalid request method'}, status=400)
 
 @login_required
 def quiz_results(request, session_id):
     responses = UserResponse.objects.filter(session_id=session_id, user=request.user)
-    return render(request, 'quiz/results.html', {'responses': responses})
+    return render(request, 'app1/results.html', {'responses': responses})
