@@ -1,4 +1,4 @@
-# quiz/urls.py
+
 
 from django.urls import path
 
@@ -11,7 +11,7 @@ urlpatterns = [
     path('results/<int:session_id>/', views.quiz_results, name='quiz_results'),
 ]
 
-# Add this to your project's urls.py
+
 from django.urls import include, path
 
 urlpatterns = [
