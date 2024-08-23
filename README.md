@@ -1,4 +1,4 @@
-# Coding Test App 
+# Coding Quiz App
 
 ## Overview
 

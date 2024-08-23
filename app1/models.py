@@ -1,10 +1,17 @@
+# app1/models.py
+
 from django.contrib.auth.models import User
 from django.db import models
 
 
+from django.db import models
+
 class Question(models.Model):
     text = models.TextField()
     time_limit = models.IntegerField()  # in seconds
+
+    def __str__(self):
+        return self.text[:50]  # Return first 50 characters of the question text
 
 class UserSession(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

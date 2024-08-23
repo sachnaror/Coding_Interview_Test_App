@@ -1,0 +1,72 @@
+[
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Write a Python function to find the maximum of three numbers.",
+      "time_limit": 300
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Create a Python program that checks if a given string is a palindrome.",
+      "time_limit": 360
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Implement a Python function to calculate the factorial of a number using recursion.",
+      "time_limit": 300
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Write a Python program to find all prime numbers up to a given number.",
+      "time_limit": 420
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Create a Python function that takes a list of numbers and returns a new list with only the even numbers.",
+      "time_limit": 300
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Implement a Python class representing a simple bank account with deposit and withdraw methods.",
+      "time_limit": 480
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Write a Python function to check if two strings are anagrams.",
+      "time_limit": 360
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Create a Python program that simulates a basic calculator (addition, subtraction, multiplication, division).",
+      "time_limit": 480
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Implement a Python function to reverse a string without using the built-in reverse function.",
+      "time_limit": 300
+    }
+  },
+  {
+    "model": "app1.question",
+    "fields": {
+      "text": "Write a Python program to find the second largest number in a list.",
+      "time_limit": 360
+    }
+  }
+]

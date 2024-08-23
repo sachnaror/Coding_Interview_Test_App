@@ -1,4 +1,4 @@
-
+# app1/urls.py
 
 from django.urls import path
 
@@ -9,12 +9,4 @@ urlpatterns = [
     path('save-draft/', views.save_draft, name='save_draft'),
     path('submit-quiz/', views.submit_quiz, name='submit_quiz'),
     path('results/<int:session_id>/', views.quiz_results, name='quiz_results'),
-]
-
-
-from django.urls import include, path
-
-urlpatterns = [
-    # ... other URL patterns ...
-    path('quiz/', include('quiz.urls')),
 ]
