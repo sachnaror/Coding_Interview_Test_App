@@ -80,5 +80,34 @@
         }
     </script>
 
+    <script>
+        document.getElementById('save-draft').addEventListener('click', function() {
+            const response = document.getElementById('code-input').value;
+            const questionId = questions[currentQuestionIndex].id;
+            const sessionId = {{ session_id }};
 
+            fetch('/save-draft/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: JSON.stringify({
+                    question_id: questionId,
+                    response: response,
+                    session_id: sessionId
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    alert('Draft saved successfully');
+                }
+            });
+        });
+
+        function getCookie(name) {
+            // Function to get CSRF token (implement this)
+        }
+    </script>
 {% endblock %}
