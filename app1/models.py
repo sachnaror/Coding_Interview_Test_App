@@ -24,7 +24,13 @@ class UserResponse(models.Model):
     submission_time = models.DateTimeField(auto_now=True)
     session = models.ForeignKey(UserSession, on_delete=models.CASCADE)
 
-class UserRegistration(models.Model):
+from django.contrib.auth.hashers import make_password
 
+
+class UserRegistration(models.Model):
     username = models.CharField(max_length=150)
     password = models.CharField(max_length=128)
+
+    def save(self, *args, **kwargs):
+        self.password = make_password(self.password)
+        super(UserRegistration, self).save(*args, **kwargs)
