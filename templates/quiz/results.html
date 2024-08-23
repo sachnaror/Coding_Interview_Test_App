@@ -1,0 +1,19 @@
+<!-- quiz/templates/quiz/results.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Quiz Results</h1>
+    {% for response in responses %}
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">Question {{ forloop.counter }}</h5>
+            <p class="card-text">{{ response.question.text }}</p>
+            <h6>Your Response:</h6>
+            <pre><code>{{ response.response }}</code></pre>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

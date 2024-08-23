@@ -1,0 +1,29 @@
+<!-- quiz/templates/quiz/interface.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <video id="camera-feed" autoplay></video>
+        </div>
+        <div class="col-md-6">
+            <div id="question-container">
+                <h2 id="question-text"></h2>
+                <p id="timer"></p>
+            </div>
+            <textarea id="code-input" class="form-control" rows="10"></textarea>
+            <button id="save-draft" class="btn btn-secondary mt-2">Save Draft</button>
+            <button id="next-question" class="btn btn-primary mt-2">Next Question</button>
+            <button id="submit-quiz" class="btn btn-success mt-2" style="display: none;">Submit Quiz</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // JavaScript code for quiz functionality will go here
+</script>
+{% endblock %}
