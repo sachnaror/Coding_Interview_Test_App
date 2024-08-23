@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block extra_js %}
-<script>
+
     <script>
         // Access user's camera
         navigator.mediaDevices.getUserMedia({ video: true })
@@ -35,5 +35,50 @@
                 console.log("An error occurred: " + err);
             });
     </script>
-</script>
+
+    <script>
+        const questions = {{ questions|safe }};
+        let currentQuestionIndex = 0;
+        let timer;
+
+        function displayQuestion() {
+            const question = questions[currentQuestionIndex];
+            document.getElementById('question-text').textContent = question.text;
+            startTimer(question.time_limit);
+        }
+
+        function startTimer(duration) {
+            let timeLeft = duration;
+            timer = setInterval(() => {
+                document.getElementById('timer').textContent = `Time left: ${timeLeft} seconds`;
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    nextQuestion();
+                }
+                timeLeft--;
+            }, 1000);
+        }
+
+        function nextQuestion() {
+            clearInterval(timer);
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                displayQuestion();
+            } else {
+                document.getElementById('next-question').style.display = 'none';
+                document.getElementById('submit-quiz').style.display = 'block';
+            }
+        }
+
+        document.getElementById('next-question').addEventListener('click', nextQuestion);
+        document.getElementById('submit-quiz').addEventListener('click', submitQuiz);
+
+        displayQuestion();
+
+        function submitQuiz() {
+            // Submit the quiz (you'll need to implement this)
+        }
+    </script>
+
+
 {% endblock %}
